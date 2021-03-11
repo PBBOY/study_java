@@ -25,12 +25,12 @@ public class DatabaseConfig {
 	@Value("${spring.datasource.resource}")
 	String resource;
 	
-//	@Primary
-//	@Bean
-//	@ConfigurationProperties(prefix = "spring.datasource")
-//	public DataSource datasource() {
-//		return DataSourceBuilder.create().type(DataSource.class).build();
-//	}
+	@Primary
+	@Bean
+	@ConfigurationProperties(prefix = "spring.datasource.hikari")
+	public DataSource datasource() {
+		return DataSourceBuilder.create().build();
+	}
 	
 	@Bean
 	public SqlSessionFactory sqlSessionFactory(DataSource source) throws Exception {

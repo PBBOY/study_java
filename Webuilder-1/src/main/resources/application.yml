@@ -1,7 +1,10 @@
 spring:
   profiles:
     active: local  datasource:
-    url: jdbc:postgresql://192.168.137.2:5432/webuilder
-    driver-class-name: org.postgresql.Driver 
-    resource: classpath:mapper/postgresql/*.xml    username: pbboy
-    password: qudgh1!
+    resource: classpath:mapper/postgresql/*.xml    hikari:
+      jdbc-url: jdbc:postgresql://192.168.137.2:5432/postgres
+      driver-class-name: org.postgresql.Driver 
+      username: postgres
+      password: qudgh1! 
+
+
