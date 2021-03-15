@@ -14,4 +14,8 @@ public interface TreeViewMapper {
 	
 	String valueById(Long id) throws Exception;
 	
+	List<TreeItem> getTreeAll() throws Exception;
+	int insertData(TreeItem item) throws Exception;
+	int deleteData(Long id) throws Exception;
+	
 }

@@ -1,6 +1,7 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
-import UserListComponent from "../UserListComponent";
+import TreeItemComponent from '../treeItemComponent/TreeItemComponent';
+import UserListComponent from "../userListComponent/UserListComponent";
 
 const AppRouter = () => {
     return (
@@ -10,6 +11,7 @@ const AppRouter = () => {
                     <Switch>
                         <Route exact path="/" component={UserListComponent}/>
                         <Route path="/getAll" component={UserListComponent}/>
+                        <Route path="/getTreeAll" component={TreeItemComponent}/>
                     </Switch>
                 </div>
             </BrowserRouter>

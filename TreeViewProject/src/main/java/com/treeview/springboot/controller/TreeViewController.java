@@ -6,19 +6,23 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.treeview.springboot.domain.TreeItem;
 import com.treeview.springboot.mapper.TreeViewMapper;
+import com.treeview.springboot.service.TreeViewService;
 
 @RestController
 public class TreeViewController {
-	@Autowired
-	TreeViewMapper mapper;
 	
 	@Autowired
 	SqlSessionFactory sqlFactory;
+	
+	@Autowired
+	private TreeViewService service;
 	
 	@GetMapping("/test")
 	public String sqlCehck() throws Exception{
@@ -31,22 +35,33 @@ public class TreeViewController {
 			System.out.println("실패..!");
 			ex.printStackTrace();
 		}
-		
 		return "/board/list";
+	}
+
+	
+	@GetMapping("/valueById")
+	public String valueById(Long id) throws Exception {
+		return service.valueById(id);
 	}
 	
 	@GetMapping("/getAll")
-	public List<TreeItem> test() throws Exception {
-		System.out.println(new Date() + " getAll 호출됨");
-		List<TreeItem> item = mapper.getAll();
-		System.out.println(new Date() + " getAll end");
-		return item;
-		
-		
+	public List<TreeItem> getAll() throws Exception {
+		return service.getAll();
 	}
 	
-	@GetMapping("/valueById")
-	public String getName() throws Exception {
-		return mapper.valueById(1L);
+	@GetMapping("/getTreeAll")
+	public List<TreeItem> getTreeAll() throws Exception {
+		System.out.println("start");
+		return service.getTreeAll();
+	}
+	
+	@PostMapping("/insertData")
+	public int insertData(TreeItem item) throws Exception {
+		return service.insertData(item);
+	}
+	
+	@DeleteMapping("/deleteData")
+	public int deleteData(Long id) throws Exception{
+		return service.deleteData(id);
 	}
 }

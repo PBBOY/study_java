@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import ApiService from "../ApiService";
+import ApiService from "../../ApiService";
 
 class UserListComponent extends Component{
     constructor(props){
@@ -18,7 +18,6 @@ class UserListComponent extends Component{
     reloadUserList = () => {
         ApiService.fetchGetAll().then(
             res => {
-                console.timeLog()
                 this.setState({
                     users : res.data
                 })
